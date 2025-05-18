@@ -1,10 +1,9 @@
 // use std::io;
 
-
 mod dailies;
 mod infinite;
 mod help;
-
+mod data;
 #[derive(Debug)]
 pub struct Config {
     pub mode: Mode
