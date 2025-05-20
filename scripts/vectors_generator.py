@@ -36,7 +36,7 @@ def replace(file_path:str, replacement_string: str):
         return output_file_content.replace(replacement_string, vec)
 
 output_file_content = replace("shuffled_real_wordles.txt","{{WORDLE_VECTOR}}")
-output_file_content = replace("official_allowed_guesses.txt","{{GUESSES_VECTOR}}")
+output_file_content = replace("combined_wordlist.txt","{{GUESSES_VECTOR}}")
 
 print(output_file_content)
 

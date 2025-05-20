@@ -4,6 +4,8 @@ mod dailies;
 mod infinite;
 mod help;
 mod data;
+mod guess_validation;
+
 #[derive(Debug)]
 pub struct Config {
     pub mode: Mode
@@ -47,6 +49,8 @@ pub enum Mode {
 }
 
 fn display(guess_words: &Vec<String>) {
+    print!("\x1B[2J\x1B[1;1H");
+    // print!("{guess}
     for words in guess_words {
         println!("{} {} {} {} {}",words.chars().nth(0).unwrap(),
                                   words.chars().nth(1).unwrap(),
@@ -66,18 +70,22 @@ pub fn run_game(wordle:String) {
         io::stdin().read_line(&mut guess_word).expect("Failed to read input");
         guess_word = guess_word.trim().to_string();
 
+        if let Err(e) = guess_validation::validate_guess(&guess_word,&guesses) {
+            println!("Error: {}",e);
+            continue;
+        }
+
         if wordle == guess_word {
+            
             guesses.push(guess_word);
-            print!("\x1B[2J\x1B[1;1H");
             display(&guesses);
             println!("You win!");
             return
         }
 
         guesses.push(guess_word);
-        print!("\x1B[2J\x1B[1;1H");
+        
         display(&guesses);
-
         guess = guess + 1;
 
     }
