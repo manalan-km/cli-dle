@@ -1,5 +1,6 @@
 use crate::{data::{self, get_wordles}, run_game};
 use rand::prelude::*;
+use std::io;
 
 fn set_wordle () -> &'static String {
 
@@ -16,8 +17,16 @@ fn set_wordle () -> &'static String {
 pub fn run() {
     println!("Running infinite mode");
 
-    let wordle = set_wordle().to_string();
-    println!("{wordle}");
-    run_game(wordle);
+    loop{
+        let wordle = set_wordle().to_string();
+        run_game(&wordle);
+        println!("Wordle for this round: {wordle}");
+
+        println!("Press Enter to continue!");
+        let mut dummy: String = String::new();
+        io::stdin().read_line(&mut dummy).expect("Failed to read input!");
+    }
+
+    
 
 }
