@@ -1,4 +1,4 @@
-// use std::io;
+use std::io;
 
 mod dailies;
 mod infinite;
@@ -46,17 +46,42 @@ pub enum Mode {
     Help
 }
 
-// fn display(guess_words: &Vec<String>) {
-//     println!("{:?}", guess_words);
-//     for words in guess_words {
-//         println!("{} {} {} {} {}",words.chars().nth(0).unwrap(),
-//                                   words.chars().nth(1).unwrap(),
-//                                   words.chars().nth(2).unwrap(),
-//                                   words.chars().nth(3).unwrap(),
-//                                   words.chars().nth(4).unwrap(),);
-//         println!("- - - - -");
-//     }
-// }
+fn display(guess_words: &Vec<String>) {
+    for words in guess_words {
+        println!("{} {} {} {} {}",words.chars().nth(0).unwrap(),
+                                  words.chars().nth(1).unwrap(),
+                                  words.chars().nth(2).unwrap(),
+                                  words.chars().nth(3).unwrap(),
+                                  words.chars().nth(4).unwrap(),);
+        println!("- - - - -");
+    }
+}
+
+pub fn run_game(wordle:String) { 
+    let mut guess: u8 = 0;
+    let mut guesses: Vec<String> = Vec::new();
+    while guess < 6 {
+        let mut guess_word = String::new();
+        println!("Your guess:");
+        io::stdin().read_line(&mut guess_word).expect("Failed to read input");
+        guess_word = guess_word.trim().to_string();
+
+        if wordle == guess_word {
+            guesses.push(guess_word);
+            print!("\x1B[2J\x1B[1;1H");
+            display(&guesses);
+            println!("You win!");
+            return
+        }
+
+        guesses.push(guess_word);
+        print!("\x1B[2J\x1B[1;1H");
+        display(&guesses);
+
+        guess = guess + 1;
+
+    }
+}
 
 
 pub fn run(mode:Mode) {
@@ -67,18 +92,4 @@ pub fn run(mode:Mode) {
         Mode::Help => help::run(), 
     };
 
-    
-    // let mut guess: u8 = 0;
-    // let mut guesses: Vec<String> = Vec::new();
-    // while guess < 6 {
-    //     let mut guess_word = String::new();
-    //     println!("Your guess:");
-    //     io::stdin().read_line(&mut guess_word).expect("Failed to read input");
-
-    //     guesses.push(guess_word);
-    //     print!("\x1B[2J\x1B[1;1H");
-    //     display(&guesses);
-    //     guess = guess + 1;
-
-    // }
 }
