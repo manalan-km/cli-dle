@@ -19,6 +19,7 @@ pub fn run() {
 
     loop{
         let wordle = set_wordle().to_string();
+        println!("Wordle for this round: {wordle}");
         run_game(&wordle);
         println!("Wordle for this round: {wordle}");
 

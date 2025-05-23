@@ -60,6 +60,7 @@ pub fn run_game(wordle:&String) {
     while guess < 6 {
         println!("#{}/6", guess +1);
         output_display::display_boxes(6 - guess);
+        
         let mut guess_word = String::new();
         println!("Your guess:");
         io::stdin().read_line(&mut guess_word).expect("Failed to read input");
@@ -77,7 +78,10 @@ pub fn run_game(wordle:&String) {
         if wordle == &guess_word {
             
             guesses.push(guess_word);
+            guess = guess + 1;
+
             output_display::display(&guesses, &wordle);
+            output_display::display_boxes(6 - guess);
             println!("You win!");
             return
         }
