@@ -1,4 +1,6 @@
-use crate::data::{get_guesses, GUESSES};
+// use crate::data::{get_guesses, GUESSES};
+
+use crate::data::get_guesses;
 
 pub enum ValidationErrors {
     TooShort,
@@ -24,7 +26,7 @@ impl std::fmt::Display for ValidationErrors {
 
 pub fn validate_guess<'a>(guess_word: &'a String, guess_words: &'a Vec<String>) -> Result<&'a String,ValidationErrors> {
 
-    let possible_guess = GUESSES.get_or_init(get_guesses);
+    let possible_guess = get_guesses();
 
     if !guess_word.chars().all(|x| x.is_ascii_alphabetic()) {
         return Err(ValidationErrors::ContainsInvalidChars);
