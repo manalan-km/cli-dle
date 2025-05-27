@@ -10,6 +10,7 @@ upgrade-guid = "5E959044-9340-4C28-9BE2-1E0DFBCF075E"
 path-guid = "95A85F25-0E97-4746-8493-1B06D245268E"
 license = false
 eula = false
+
 [dependencies]
 colored = "3.0.0"
 console = "0.15.11"
