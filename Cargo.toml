@@ -1,10 +1,23 @@
 [package]
-name = "wordle-cli"
-version = "0.1.0"
+name = "cli-dle"
+version = "0.0.1"
 edition = "2024"
+repository = "https://github.com/manalan-km/wordle-cli/"
+authors = ["manalan-km"]
+
+[package.metadata.wix]
+upgrade-guid = "5E959044-9340-4C28-9BE2-1E0DFBCF075E"
+path-guid = "95A85F25-0E97-4746-8493-1B06D245268E"
+license = false
+eula = false
 
 [dependencies]
 colored = "3.0.0"
 console = "0.15.11"
 crossterm = "0.29.0"
 rand = "0.9.1"
+
+# The profile that 'dist' will build with
+[profile.dist]
+inherits = "release"
+lto = "thin"
