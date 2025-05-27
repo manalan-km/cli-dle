@@ -21,16 +21,6 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
 
 [[package]]
-name = "cli-dle"
-version = "0.0.1"
-dependencies = [
- "colored",
- "console",
- "crossterm",
- "rand",
-]
-
-[[package]]
 name = "colored"
 version = "3.0.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -502,6 +492,16 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "6f42320e61fe2cfd34354ecb597f86f413484a798ba44a8ca1165c58d42da6c1"
 dependencies = [
  "bitflags",
+]
+
+[[package]]
+name = "wordle-cli"
+version = "0.1.0"
+dependencies = [
+ "colored",
+ "console",
+ "crossterm",
+ "rand",
 ]
 
 [[package]]
